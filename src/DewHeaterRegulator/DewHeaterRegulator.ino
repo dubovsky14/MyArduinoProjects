@@ -67,10 +67,6 @@ void setup() {
         pinMode(i_led, OUTPUT);
     }
     
-    //debug
-    pinMode(14,OUTPUT);
-    digitalWrite(14,HIGH);
-
     for (const int i_led : range_leds_indices) {
         digitalWrite(i_led, HIGH);
     }
@@ -80,7 +76,6 @@ void setup() {
 
     delay(5000);
     Serial.print("Setup done");
-    digitalWrite(14,LOW);
 }
 
 void loop() {
@@ -93,9 +88,6 @@ void loop() {
     while (digitalRead(button_output_switch_index) == HIGH) {
         output_switch_button_pressed = true;
         last_change_time = millis();        
-        digitalWrite(14,HIGH);
-        delay(100);
-        digitalWrite(14,LOW);
         delay(100);
 
         Serial.println("button_output_switch_index pressed");
@@ -109,10 +101,7 @@ void loop() {
     while (digitalRead(button_voltage_regulator_index) == HIGH) {
         voltage_regulator_button_pressed = true;
         last_change_time = millis();
-        digitalWrite(14,HIGH);
         delay(100);
-        digitalWrite(14,LOW);
-        delay(1000);
         Serial.println("button_voltage_regulator_index pressed");
     }
     if (voltage_regulator_button_pressed) {
