@@ -9,7 +9,7 @@ const int range_leds_indices[]    = {2,3,4,5};
 const int range_leds_indices_size = sizeof(range_leds_indices)/sizeof(range_leds_indices[0]);
 const int output_leds_indices[]   = {6,7};
 const int output_leds_indices_size = sizeof(output_leds_indices)/sizeof(output_leds_indices[0]);
-const int output_voltage_pins[]   = {8,9};
+const int output_voltage_pins[]   = {28,29};
 const int output_voltage_pins_size = sizeof(output_voltage_pins)/sizeof(output_voltage_pins[0]);
 int output_voltages[]             = {0,0};
 
@@ -54,6 +54,18 @@ void update_leds() {
     }
 }
 
+void update_output_voltage() {
+    const int max_value = pow(2, range_leds_indices_size) - 1;
+    for (unsigned int i = 0; i < output_voltage_pins_size; i++) {
+        const int value = output_voltages[i] * 32000. / max_value;
+        Serial.print("Setting output voltage on pin: ");
+        Serial.print(output_voltage_pins[i]);
+        Serial.print(" to value: ");
+        Serial.println(value);
+        analogWrite(output_voltage_pins[i], output_voltages[i]);
+    }
+}
+
 void setup() {
     Serial.begin(115200);
 
@@ -66,12 +78,17 @@ void setup() {
     for (const int i_led : output_leds_indices) {
         pinMode(i_led, OUTPUT);
     }
-    
+
     for (const int i_led : range_leds_indices) {
         digitalWrite(i_led, HIGH);
     }
     for (const int i_led : output_leds_indices) {
         digitalWrite(i_led, HIGH);
+    }
+
+    for (const int i_pin : output_voltage_pins) {
+        pinMode(i_pin, OUTPUT);
+        analogWrite(i_pin, 0);
     }
 
     delay(5000);
@@ -87,7 +104,7 @@ void loop() {
     bool output_switch_button_pressed = false;
     while (digitalRead(button_output_switch_index) == HIGH) {
         output_switch_button_pressed = true;
-        last_change_time = millis();        
+        last_change_time = millis();
         delay(100);
 
         Serial.println("button_output_switch_index pressed");
@@ -95,6 +112,7 @@ void loop() {
     if (output_switch_button_pressed) {
         switch_output_pin();
         update_leds();
+        update_output_voltage();
     }
 
     bool voltage_regulator_button_pressed = false;
@@ -107,5 +125,6 @@ void loop() {
     if (voltage_regulator_button_pressed) {
         increase_output_voltage();
         update_leds();
+        update_output_voltage();
     }
 }
