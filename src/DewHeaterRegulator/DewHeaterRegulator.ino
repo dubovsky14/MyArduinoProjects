@@ -54,15 +54,15 @@ void update_leds() {
     }
 }
 
-void update_output_voltage() {
-    const int max_value = pow(2, range_leds_indices_size) - 1;
+void set_pwm_pins() {
+    int time = millis();
     for (unsigned int i = 0; i < output_voltage_pins_size; i++) {
-        const int value = output_voltages[i] * 32000. / max_value;
-        Serial.print("Setting output voltage on pin: ");
-        Serial.print(output_voltage_pins[i]);
-        Serial.print(" to value: ");
-        Serial.println(value);
-        analogWrite(output_voltage_pins[i], output_voltages[i]);
+        const float value_fraction = float(output_voltages[i]) / (pow(2, range_leds_indices_size)-1.);
+        if (time % 1000 < value_fraction * 1000) {
+            digitalWrite(output_voltage_pins[i], HIGH);
+        } else {
+            digitalWrite(output_voltage_pins[i], LOW);
+        }
     }
 }
 
@@ -88,7 +88,7 @@ void setup() {
 
     for (const int i_pin : output_voltage_pins) {
         pinMode(i_pin, OUTPUT);
-        analogWrite(i_pin, 0);
+        digitalWrite(i_pin, LOW);
     }
 
     delay(5000);
@@ -96,6 +96,7 @@ void setup() {
 }
 
 void loop() {
+    set_pwm_pins();
     if (millis() - last_change_time > 5000) {
         turn_off_all_leds();
     }
@@ -112,7 +113,6 @@ void loop() {
     if (output_switch_button_pressed) {
         switch_output_pin();
         update_leds();
-        update_output_voltage();
     }
 
     bool voltage_regulator_button_pressed = false;
@@ -125,6 +125,5 @@ void loop() {
     if (voltage_regulator_button_pressed) {
         increase_output_voltage();
         update_leds();
-        update_output_voltage();
     }
 }
