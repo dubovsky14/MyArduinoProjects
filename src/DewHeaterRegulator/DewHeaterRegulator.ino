@@ -1,7 +1,5 @@
 #include <Arduino.h>
 
-#include <Wire.h>
-
 using namespace std;
 
 const int button_output_switch_index     = 8;
@@ -9,9 +7,9 @@ const int button_voltage_increase_index  = 7;
 const int button_voltage_decrease_index  = 6;
 const int range_leds_indices[]    = {14,15,26,27,28,29};
 const int range_leds_indices_size = sizeof(range_leds_indices)/sizeof(range_leds_indices[0]);
-const int output_leds_indices[]   = {3,4,5};
+const int output_leds_indices[]   = {0,1,2};
 const int output_leds_indices_size = sizeof(output_leds_indices)/sizeof(output_leds_indices[0]);
-const int output_voltage_pins[]   = {0,1,2};
+const int output_voltage_pins[]   = {3,4,5};
 const int output_voltage_pins_size = sizeof(output_voltage_pins)/sizeof(output_voltage_pins[0]);
 int output_voltages[]             = {0,0,0};
 
