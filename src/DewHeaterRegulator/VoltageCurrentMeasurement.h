@@ -10,14 +10,16 @@ class VoltageCurrentMeasurement {
         VoltageCurrentMeasurement() = delete;
 
         VoltageCurrentMeasurement(ADS1115 *ads, uint8_t voltage_pin, uint8_t current_pin, float voltage_const, float current_const)   {
-
-
-
             m_voltage_pin = voltage_pin;
             m_current_pin = current_pin;
             m_voltage_const = voltage_const;
             m_current_const = current_const;
             m_ads1115 = ads;
+        }
+
+        void set_noise_level(float voltage_noise, float current_noise) {
+            m_voltage_noise = voltage_noise;
+            m_current_noise = current_noise;
         }
 
         void set_time_interval(int time_interval_min, int time_interval_max) {
@@ -35,6 +37,13 @@ class VoltageCurrentMeasurement {
                 m_average_voltage = m_voltage_sum/m_n_samples;
                 m_average_current = m_current_sum/m_n_samples;
                 m_total_charge += m_average_current*(time_now - m_time_last_average)/3600000.0;
+
+                if (abs(m_average_voltage) < m_voltage_noise) {
+                    m_average_voltage = 0;
+                }
+                if (abs(m_average_current) < m_current_noise) {
+                    m_average_current = 0;
+                }
 
                 m_voltage_sum = 0;
                 m_current_sum = 0;
@@ -85,6 +94,9 @@ class VoltageCurrentMeasurement {
         float m_voltage_const;
         float m_current_const;
         ADS1115 *m_ads1115 = nullptr;
+
+        float m_voltage_noise = 0;
+        float m_current_noise = 0;
 
         int32_t m_time_interval_min = 5;
         int32_t m_time_interval_max = 20;

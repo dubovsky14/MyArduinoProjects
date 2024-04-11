@@ -44,6 +44,7 @@ Adafruit_SSD1306 g_display(OLED_WIDTH, OLED_HEIGHT);
 
 VoltageCurrentMeasurement g_voltage_current_measurement(&g_ads1115, g_voltage_pin, g_current_pin, g_voltage_const, g_current_const);
 
+
 void switch_output_pin() {
     g_current_output_pin = (g_current_output_pin + 1) % (g_output_voltage_pins_size+1);
 
@@ -157,7 +158,7 @@ void setup() {
         digitalWrite(i_pin, LOW);
     }
 
-	g_ads1115.begin();
+	  g_ads1115.begin();
 
     g_display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR);
     g_display.clearDisplay();
@@ -169,6 +170,7 @@ void setup() {
 
     g_display.display();
 
+    g_voltage_current_measurement.set_noise_level(0.005, 0.005);
     delay(5000);
     Serial.print("Setup done");
 
