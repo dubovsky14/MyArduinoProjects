@@ -1,5 +1,6 @@
 
 #include <Wire.h>
+#include "ADS1X15.h"
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_GFX.h>
 #include <string>
@@ -16,11 +17,6 @@
 #define OLED_ADDR   0x3C
 
 
-#define VOLTAGE_PIN 26
-#define VOLTAGE_CONST 0.0244
-#define CURRENT_PIN 27
-#define CURRENT_CONST 0.01135
-
 using namespace std;
 
 const int32_t g_button_output_switch_index     = 26;
@@ -32,19 +28,21 @@ const int32_t g_output_voltage_pins[]   = {0,1,2};
 const int32_t g_output_voltage_pins_size = sizeof(g_output_voltage_pins)/sizeof(g_output_voltage_pins[0]);
 const int32_t g_max_voltage             = 100;
 
-const int32_t g_voltage_pin = 27;
-const int32_t g_current_pin = 28;
-const float g_voltage_const = 0.0244;
-const float g_current_const = 0.01135;
+const int32_t g_voltage_pin = 0;    // on ADS1115
+const int32_t g_current_pin = 1;    // on ADS1115
+const float g_voltage_const = 0.0014285;
+const float g_current_const = 0.000725389;
 
 int32_t g_output_voltages[]             = {0,0,0};
 
 int32_t g_current_output_pin = 0;   // 3 = show current, voltage and total charge
 int32_t g_last_change_time = 0;
 
+ADS1115 g_ads1115 = ADS1115(0x48);
+
 Adafruit_SSD1306 g_display(OLED_WIDTH, OLED_HEIGHT);
 
-VoltageCurrentMeasurement g_voltage_current_measurement(g_voltage_pin, g_current_pin, g_voltage_const, g_current_const);
+VoltageCurrentMeasurement g_voltage_current_measurement(&g_ads1115, g_voltage_pin, g_current_pin, g_voltage_const, g_current_const);
 
 void switch_output_pin() {
     g_current_output_pin = (g_current_output_pin + 1) % (g_output_voltage_pins_size+1);
@@ -158,6 +156,8 @@ void setup() {
         pinMode(i_pin, OUTPUT);
         digitalWrite(i_pin, LOW);
     }
+
+	g_ads1115.begin();
 
     g_display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR);
     g_display.clearDisplay();

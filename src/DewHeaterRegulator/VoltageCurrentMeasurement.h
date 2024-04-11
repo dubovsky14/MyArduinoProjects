@@ -3,15 +3,21 @@
 #include <Arduino.h>
 #include <string>
 
+#include "ADS1X15.h"
+
 class VoltageCurrentMeasurement {
     public:
         VoltageCurrentMeasurement() = delete;
 
-        VoltageCurrentMeasurement(int voltage_pin, int current_pin, float voltage_const, float current_const)   {
+        VoltageCurrentMeasurement(ADS1115 *ads, uint8_t voltage_pin, uint8_t current_pin, float voltage_const, float current_const)   {
+
+
+
             m_voltage_pin = voltage_pin;
             m_current_pin = current_pin;
             m_voltage_const = voltage_const;
             m_current_const = current_const;
+            m_ads1115 = ads;
         }
 
         void set_time_interval(int time_interval_min, int time_interval_max) {
@@ -39,8 +45,8 @@ class VoltageCurrentMeasurement {
 
             }
             if (time_now >= m_next_time_measurement) {
-                const float voltage = m_voltage_const*analogRead(m_voltage_pin);
-                const float current = m_current_const*analogRead(m_current_pin);
+                const float voltage = m_voltage_const*m_ads1115->readADC(0);
+                const float current = m_current_const*m_ads1115->readADC(1);
 
                 m_voltage_sum += voltage;
                 m_current_sum += current;
@@ -74,10 +80,11 @@ class VoltageCurrentMeasurement {
 
 
     private:
-        int32_t m_voltage_pin;
-        int32_t m_current_pin;
+        uint8_t m_voltage_pin;
+        uint8_t m_current_pin;
         float m_voltage_const;
         float m_current_const;
+        ADS1115 *m_ads1115 = nullptr;
 
         int32_t m_time_interval_min = 5;
         int32_t m_time_interval_max = 20;
@@ -97,6 +104,6 @@ class VoltageCurrentMeasurement {
 
         double random()  {
             return (double(rand())+1) / (double(RAND_MAX)+2);
-        }
+        };
 
 };
