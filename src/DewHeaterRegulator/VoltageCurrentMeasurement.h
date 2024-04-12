@@ -54,8 +54,12 @@ class VoltageCurrentMeasurement {
 
             }
             if (time_now >= m_next_time_measurement) {
-                const float voltage = m_voltage_const*m_ads1115->readADC(0);
-                const float current = m_current_const*m_ads1115->readADC(1);
+
+                const std::string message = "channel 0 = " + std::to_string(m_ads1115->readADC(0)) + " channel 1 = " + std::to_string(m_ads1115->readADC(1)) + " channel 2 = " + std::to_string(m_ads1115->readADC(2)) + " channel 3 = " + std::to_string(m_ads1115->readADC(3));
+                Serial.println(message.c_str());
+
+                const float voltage = m_voltage_const*m_ads1115->readADC(m_voltage_pin);
+                const float current = m_current_const*m_ads1115->readADC(m_current_pin);
 
                 m_voltage_sum += voltage;
                 m_current_sum += current;

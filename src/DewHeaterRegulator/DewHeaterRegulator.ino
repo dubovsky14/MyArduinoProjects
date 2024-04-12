@@ -22,16 +22,16 @@ using namespace std;
 const int32_t g_button_output_switch_index     = 26;
 const int32_t g_button_voltage_increase_index  = 15;
 const int32_t g_button_voltage_decrease_index  = 14;
-const int32_t g_output_leds_indices[]   = {6,7,8};
+const int32_t g_output_leds_indices[]   = {2,1,0};
 const int32_t g_output_leds_indices_size = sizeof(g_output_leds_indices)/sizeof(g_output_leds_indices[0]);
-const int32_t g_output_voltage_pins[]   = {0,1,2};
+const int32_t g_output_voltage_pins[]   = {13,11,9};
 const int32_t g_output_voltage_pins_size = sizeof(g_output_voltage_pins)/sizeof(g_output_voltage_pins[0]);
 const int32_t g_max_voltage             = 100;
 
-const int32_t g_voltage_pin = 0;    // on ADS1115
+const int32_t g_voltage_pin = 3;    // on ADS1115
 const int32_t g_current_pin = 1;    // on ADS1115
 const float g_voltage_const = 0.0014285;
-const float g_current_const = 0.000725389;
+const float g_current_const = -0.000725389;
 
 int32_t g_output_voltages[]             = {0,0,0};
 
@@ -90,8 +90,13 @@ std::string get_time_string(int time_milis) {
 
 
 void update_leds() {
-    for (const int32_t i_led : g_output_leds_indices) {
-        digitalWrite(i_led, (i_led == g_output_leds_indices[g_current_output_pin]) ? HIGH : LOW);
+    for (int32_t i_led = 0; i_led < g_output_leds_indices_size; i_led++) {
+        if (i_led == g_current_output_pin)  {
+            analogWrite(g_output_leds_indices[i_led], 5);
+        }
+        else {
+            digitalWrite(g_output_leds_indices[i_led], LOW);
+        }
     }
     if (g_current_output_pin < g_output_voltage_pins_size) {
         g_display.clearDisplay();
@@ -158,7 +163,7 @@ void setup() {
         digitalWrite(i_pin, LOW);
     }
 
-	  g_ads1115.begin();
+    g_ads1115.begin();
 
     g_display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR);
     g_display.clearDisplay();
@@ -177,6 +182,7 @@ void setup() {
 }
 
 void loop() {
+
     set_pwm_pins();
     g_voltage_current_measurement.measure();
 
