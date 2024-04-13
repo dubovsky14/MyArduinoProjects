@@ -1,23 +1,22 @@
 
+#include "VoltageCurrentMeasurement.h"
+
 #include <Wire.h>
 #include "ADS1X15.h"
 #include <Adafruit_SSD1306.h>
 #include <Adafruit_GFX.h>
 #include <string>
 
+#include <vector>
 #include <stdlib.h>
 #include <cmath>
-#include <thread>
 
-#include "VoltageCurrentMeasurement.h"
 
 #define OLED_WIDTH 128
 #define OLED_HEIGHT 64
 
 #define OLED_ADDR   0x3C
 
-
-using namespace std;
 
 const int32_t g_button_output_switch_index     = 26;
 const int32_t g_button_voltage_increase_index  = 15;
@@ -44,6 +43,8 @@ Adafruit_SSD1306 g_display(OLED_WIDTH, OLED_HEIGHT);
 
 VoltageCurrentMeasurement g_voltage_current_measurement(&g_ads1115, g_voltage_pin, g_current_pin, g_voltage_const, g_current_const);
 
+
+using namespace std;
 
 void switch_output_pin() {
     g_current_output_pin = (g_current_output_pin + 1) % (g_output_voltage_pins_size+1);
@@ -88,6 +89,17 @@ std::string get_time_string(int time_milis) {
             ((time_seconds >= 10) ? "" : "0") + std::to_string(time_seconds);
 }
 
+void print_messages_to_display(const std::vector<std::string> &message, int text_size) {
+    g_display.clearDisplay();
+
+    g_display.setTextSize(text_size);
+    g_display.setTextColor(WHITE);
+    g_display.setCursor(0, 0);
+    for (const std::string &msg : message) {
+        g_display.println(msg.c_str());
+    }
+    g_display.display();
+}
 
 void update_leds() {
     for (int32_t i_led = 0; i_led < g_output_leds_indices_size; i_led++) {
@@ -99,30 +111,18 @@ void update_leds() {
         }
     }
     if (g_current_output_pin < g_output_voltage_pins_size) {
-        g_display.clearDisplay();
-
-        g_display.setTextSize(3);
-        g_display.setTextColor(WHITE);
-        g_display.setCursor(0, 0);
         const std::string message = std::to_string(g_output_voltages[g_current_output_pin]) + " %";
-        g_display.println(message.c_str());
-
-        g_display.display();
+        print_messages_to_display({message}, 3);
     }
     else {
-        g_display.clearDisplay();
-
-        g_display.setTextSize(2);
-        g_display.setTextColor(WHITE);
-        g_display.setCursor(0, 0);
-
-        g_display.println(VoltageCurrentMeasurement::get_message(g_voltage_current_measurement.get_voltage(), "V").c_str());
-        g_display.println(VoltageCurrentMeasurement::get_message(g_voltage_current_measurement.get_current(), "A").c_str());
-        g_display.println(VoltageCurrentMeasurement::get_message(g_voltage_current_measurement.get_total_charge(), "Ah").c_str());
-        g_display.println(get_time_string(millis()).c_str());
-        g_display.display();
+        std::vector<std::string> messages   =   {
+                VoltageCurrentMeasurement::get_message(g_voltage_current_measurement.get_voltage(), "V"),
+                VoltageCurrentMeasurement::get_message(g_voltage_current_measurement.get_current(), "A"),
+                VoltageCurrentMeasurement::get_message(g_voltage_current_measurement.get_total_charge(), "Ah"),
+                get_time_string(millis())
+        };
+        print_messages_to_display(messages, 2);
     }
-
 }
 
 void set_pwm_pins() {
@@ -147,9 +147,6 @@ void setup() {
     pinMode(g_button_voltage_increase_index, INPUT);
     pinMode(g_button_voltage_decrease_index, INPUT);
 
-    pinMode(g_voltage_pin, INPUT);
-    pinMode(g_current_pin, INPUT);
-
     for (const int32_t i_led : g_output_leds_indices) {
         pinMode(i_led, OUTPUT);
     }
@@ -166,14 +163,8 @@ void setup() {
     g_ads1115.begin();
 
     g_display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR);
-    g_display.clearDisplay();
 
-    g_display.setTextSize(3);
-    g_display.setTextColor(WHITE);
-    g_display.setCursor(0, 0);
-    g_display.println("Hello");
-
-    g_display.display();
+    print_messages_to_display({"Hello"}, 3);
 
     g_voltage_current_measurement.set_noise_level(0.005, 0.005);
     delay(5000);
