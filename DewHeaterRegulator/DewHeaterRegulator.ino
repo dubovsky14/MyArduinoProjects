@@ -193,42 +193,22 @@ void loop() {
         update_leds();
     }
 
-    bool output_switch_button_pressed = false;
-    while (digitalRead(g_button_output_switch_index) == HIGH) {
-        output_switch_button_pressed = true;
-        g_last_change_time = millis();
-        delay(100);
+    auto process_button_signal = [](int32_t button_index, void (*action)()) {
+        bool button_pressed = false;
+        if (digitalRead(button_index) == HIGH) {
+            button_pressed = true;
+            delay(50);
+        }
+        if (button_pressed && digitalRead(button_index) == HIGH) {  // breadboard is too small, I can't fit a capacitor there :D
+            action();
+            update_leds();
+            g_last_change_time = millis();
+        }
+    };
 
-        Serial.println("g_button_output_switch_index pressed");
-    }
-    if (output_switch_button_pressed) {
-        switch_output_pin();
-        update_leds();
-    }
-
-    bool voltage_increase_button_pressed = false;
-    while (digitalRead(g_button_voltage_increase_index) == HIGH) {
-        voltage_increase_button_pressed = true;
-        g_last_change_time = millis();
-        delay(100);
-        Serial.println("g_button_voltage_increase_index pressed");
-    }
-    if (voltage_increase_button_pressed) {
-        increase_output_voltage();
-        update_leds();
-    }
-
-    bool voltage_decrease_button_pressed = false;
-    while (digitalRead(g_button_voltage_decrease_index) == HIGH) {
-        voltage_decrease_button_pressed = true;
-        g_last_change_time = millis();
-        delay(100);
-        Serial.println("g_button_voltage_decrease_index pressed");
-    }
-    if (voltage_decrease_button_pressed) {
-        decrease_output_voltage();
-        update_leds();
-    }
+    process_button_signal(g_button_output_switch_index, switch_output_pin);
+    process_button_signal(g_button_voltage_increase_index, increase_output_voltage);
+    process_button_signal(g_button_voltage_decrease_index, decrease_output_voltage);
 
     delay(2);
 }
