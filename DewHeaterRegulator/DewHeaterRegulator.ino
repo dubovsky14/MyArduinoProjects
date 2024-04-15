@@ -26,6 +26,8 @@ const int32_t g_output_leds_indices_size = sizeof(g_output_leds_indices)/sizeof(
 const int32_t g_output_voltage_pins[]   = {13,11,9};
 const int32_t g_output_voltage_pins_size = sizeof(g_output_voltage_pins)/sizeof(g_output_voltage_pins[0]);
 const int32_t g_max_voltage             = 100;
+const int32_t g_min_pulse_width = 50;
+const int32_t g_max_pulse_width = g_max_voltage*g_min_pulse_width;
 
 const int32_t g_voltage_pin = 3;    // on ADS1115
 const int32_t g_current_pin = 1;    // on ADS1115
@@ -127,11 +129,8 @@ void update_leds() {
 
 void set_pwm_pins() {
     const int32_t time = millis();
-    const int32_t min_pulse_width = 50;
-    const int32_t max_pulse_width = g_max_voltage*min_pulse_width;
-
     for (uint32_t i = 0; i < g_output_voltage_pins_size; i++) {
-        if ((time % max_pulse_width)/min_pulse_width < g_output_voltages[i] ) {
+        if ((time % g_max_pulse_width)/g_min_pulse_width < g_output_voltages[i] ) {
             digitalWrite(g_output_voltage_pins[i], HIGH);
         } else {
             digitalWrite(g_output_voltage_pins[i], LOW);
@@ -149,9 +148,6 @@ void setup() {
 
     for (const int32_t i_led : g_output_leds_indices) {
         pinMode(i_led, OUTPUT);
-    }
-
-    for (const int32_t i_led : g_output_leds_indices) {
         digitalWrite(i_led, HIGH);
     }
 
@@ -161,12 +157,12 @@ void setup() {
     }
 
     g_ads1115.begin();
-
     g_display.begin(SSD1306_SWITCHCAPVCC, OLED_ADDR);
 
     print_messages_to_display({"Hello"}, 3);
 
     g_voltage_current_measurement.set_noise_level(0.005, 0.005);
+    g_voltage_current_measurement.set_average_time(g_max_pulse_width);
     delay(5000);
     Serial.print("Setup done");
 
