@@ -23,7 +23,7 @@ const int32_t g_button_voltage_increase_index  = 15;
 const int32_t g_button_voltage_decrease_index  = 14;
 const int32_t g_output_leds_indices[]   = {2,1,0};
 const int32_t g_output_leds_indices_size = sizeof(g_output_leds_indices)/sizeof(g_output_leds_indices[0]);
-const int32_t g_output_voltage_pins[]   = {13,11,9};
+const int32_t g_output_voltage_pins[]   = {6,7,8};
 const int32_t g_output_voltage_pins_size = sizeof(g_output_voltage_pins)/sizeof(g_output_voltage_pins[0]);
 const int32_t g_max_voltage             = 100;
 const int32_t g_min_pulse_width = 50;
@@ -31,8 +31,8 @@ const int32_t g_max_pulse_width = g_max_voltage*g_min_pulse_width;
 
 const int32_t g_voltage_pin = 3;    // on ADS1115
 const int32_t g_current_pin = 1;    // on ADS1115
-const float g_voltage_const = 0.0014285;
-const float g_current_const = -0.000725389;
+const float g_voltage_const = 7.6;
+const float g_current_const = -43;
 
 int32_t g_output_voltages[]             = {0,0,0};
 

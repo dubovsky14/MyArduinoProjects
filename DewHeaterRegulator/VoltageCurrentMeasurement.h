@@ -10,6 +10,7 @@ class VoltageCurrentMeasurement {
         VoltageCurrentMeasurement() = delete;
 
         VoltageCurrentMeasurement(ADS1115 *ads, uint8_t voltage_pin, uint8_t current_pin, float voltage_const, float current_const)   {
+            ads->setGain(1);
             m_voltage_pin = voltage_pin;
             m_current_pin = current_pin;
             m_voltage_const = voltage_const;
@@ -58,8 +59,8 @@ class VoltageCurrentMeasurement {
                 const std::string message = "channel 0 = " + std::to_string(m_ads1115->readADC(0)) + " channel 1 = " + std::to_string(m_ads1115->readADC(1)) + " channel 2 = " + std::to_string(m_ads1115->readADC(2)) + " channel 3 = " + std::to_string(m_ads1115->readADC(3));
                 Serial.println(message.c_str());
 
-                const float voltage = m_voltage_const*m_ads1115->readADC(m_voltage_pin);
-                const float current = m_current_const*m_ads1115->readADC(m_current_pin);
+                const float voltage = m_voltage_const*m_ads1115->toVoltage(m_ads1115->readADC(m_voltage_pin));
+                const float current = m_current_const*m_ads1115->toVoltage(m_ads1115->readADC(m_current_pin));
 
                 m_voltage_sum += voltage;
                 m_current_sum += current;
