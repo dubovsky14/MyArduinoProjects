@@ -7,6 +7,8 @@
 #include <stdlib.h>
 #include <cmath>
 
+#include "ADS1X15.h"
+
 #define OLED_WIDTH 128
 #define OLED_HEIGHT 64
 
@@ -14,14 +16,30 @@
 
 Adafruit_SSD1306 display(OLED_WIDTH, OLED_HEIGHT);
 
-#define VOLTAGE_PIN 26
-#define VOLTAGE_CONST 0.0244
-#define CURRENT_PIN 27
-#define CURRENT_CONST 0.01135
+ADS1115 g_ads1115 = ADS1115(0x48);
+int32_t g_start_time_measurement = -1;
+
+#define BATTERY_VOLTAGE_PIN    0
+#define HALF_INPUT_VOLTAGE_PIN 1
+#define HALL_SENSOR_OUTPUT_PIN 2
 
 double total_charge = 0;
 int32_t last_time = 0;
 
+float get_voltage(const int pin) {
+    return g_ads1115.toVoltage(g_ads1115.readADC(pin));
+}
+
+float get_battery_voltage() {
+    return 1.024*(78./10.)*get_voltage(BATTERY_VOLTAGE_PIN);
+}
+
+float get_current() {
+    const float half_input_voltage = 0.996*get_voltage(HALF_INPUT_VOLTAGE_PIN);
+    const float hall_sensor_output = 2*get_voltage(HALL_SENSOR_OUTPUT_PIN);
+
+    return 13*(hall_sensor_output - half_input_voltage);
+}
 
 double RandomUniform()  {
     return (double(rand())+1) / (double(RAND_MAX)+2);
@@ -71,9 +89,6 @@ void setup() {
 
     delay(2000);
 
-    pinMode(VOLTAGE_PIN, INPUT);
-    pinMode(CURRENT_PIN, INPUT);
-
 }
 
 void loop() {
@@ -90,8 +105,8 @@ void loop() {
     int n_samples = 0;
 
     while (millis() < next_time) {
-        const float voltage = VOLTAGE_CONST*analogRead(VOLTAGE_PIN);
-        const float current = CURRENT_CONST*analogRead(CURRENT_PIN);
+        const float voltage = get_battery_voltage();
+        const float current = get_current();
 
         n_samples++;
 
