@@ -35,10 +35,10 @@ float get_battery_voltage() {
 }
 
 float get_current() {
-    const float half_input_voltage = 0.996*get_voltage(HALF_INPUT_VOLTAGE_PIN);
-    const float hall_sensor_output = 2*get_voltage(HALL_SENSOR_OUTPUT_PIN);
+    const float half_input_voltage = get_voltage(HALF_INPUT_VOLTAGE_PIN);
+    const float hall_sensor_output = get_voltage(HALL_SENSOR_OUTPUT_PIN);
 
-    return 13*(hall_sensor_output - half_input_voltage);
+    return 10*(half_input_voltage - hall_sensor_output) - 0.07;
 }
 
 double RandomUniform()  {
