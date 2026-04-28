@@ -128,13 +128,8 @@ void update_leds() {
 }
 
 void set_pwm_pins() {
-    const int32_t time = millis();
     for (uint32_t i = 0; i < g_output_voltage_pins_size; i++) {
-        if ((time % g_max_pulse_width)/g_min_pulse_width < g_output_voltages[i] ) {
-            digitalWrite(g_output_voltage_pins[i], HIGH);
-        } else {
-            digitalWrite(g_output_voltage_pins[i], LOW);
-        }
+        analogWrite(g_output_voltage_pins[i], g_output_voltages[i]*255/g_max_voltage);
     }
 }
 
