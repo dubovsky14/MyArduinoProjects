@@ -60,6 +60,7 @@ void decrease_output_voltage() {
         return;
     }
     g_output_voltages[g_current_output_pin] = (g_output_voltages[g_current_output_pin] + g_max_voltage) % (g_max_voltage+1);
+    set_pwm_pins();
 }
 
 
@@ -68,6 +69,7 @@ void increase_output_voltage() {
         return;
     }
     g_output_voltages[g_current_output_pin] = (g_output_voltages[g_current_output_pin] + 1) % (g_max_voltage+1);
+    set_pwm_pins();
 }
 
 void turn_off_all_leds() {
@@ -165,7 +167,6 @@ void setup() {
 
 void loop() {
 
-    set_pwm_pins();
     g_voltage_current_measurement.measure();
 
     if (millis() - g_last_change_time > 15000 && g_current_output_pin < g_output_voltage_pins_size) {

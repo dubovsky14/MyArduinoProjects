@@ -1,0 +1,21 @@
+Info: Processing symbol 'R2:Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal'.
+Info: Processing symbol 'U1:Display:ER_OLEDM0.91_1x-I2C'.
+Info: Processing symbol 'SW3:Button_Switch_THT:Push_E-Switch_KS01Q01'.
+Info: Processing symbol 'SW2:Button_Switch_THT:Push_E-Switch_KS01Q01'.
+Info: Processing symbol 'SW1:Button_Switch_THT:Push_E-Switch_KS01Q01'.
+Info: Processing symbol 'R6:Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal'.
+Info: Processing symbol 'R5:Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal'.
+Info: Processing symbol 'R4:Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal'.
+Info: Processing symbol 'R3:Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal'.
+Info: Processing symbol 'D1:LED_THT:LED_D5.0mm'.
+Info: Processing symbol 'R1:Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal'.
+Info: Processing symbol 'J1:Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical'.
+Info: Processing symbol 'D3:LED_THT:LED_D5.0mm'.
+Info: Processing symbol 'D2:LED_THT:LED_D5.0mm'.
+Updated J1 unit metadata.
+Connected J1 pin 10 to Net-(J1-Pin_10).
+Updated J1 fields.
+Changed J1 footprint from 'Connector_PinHeader_2.54mm:PinHeader_1x09_P2.54mm_Vertical' to 'Connector_PinHeader_2.54mm:PinHeader_1x10_P2.54mm_Vertical'.
+
+
+Info: Total warnings: 0, errors: 0.
