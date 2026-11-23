@@ -17,7 +17,7 @@
         "copper_text_upright": false,
         "courtyard_line_width": 0.05,
         "dimension_precision": 4,
-        "dimension_units": 3,
+        "dimension_units": 1,
         "dimensions": {
           "arrow_length": 1270000,
           "extension_offset": 500000,
@@ -213,7 +213,11 @@
         }
       ],
       "track_widths": [
-        0.0
+        0.0,
+        0.3,
+        0.6,
+        1.2,
+        2.54
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
@@ -245,6 +249,22 @@
         {
           "diameter": 0.0,
           "drill": 0.0
+        },
+        {
+          "diameter": 0.6,
+          "drill": 0.4
+        },
+        {
+          "diameter": 0.8,
+          "drill": 0.6
+        },
+        {
+          "diameter": 1.5,
+          "drill": 1.2
+        },
+        {
+          "diameter": 3.4,
+          "drill": 2.54
         }
       ],
       "zones_allow_external_fillets": false
@@ -553,7 +573,7 @@
   "pcbnew": {
     "last_paths": {
       "idf": "",
-      "netlist": "",
+      "netlist": "./",
       "plot": "",
       "specctra_dsn": "",
       "step": "",
@@ -745,7 +765,7 @@
         "uuid": "f6fc492c-549d-4066-a090-c85c8160d28d"
       }
     ],
-    "used_designators": "#PWR1-12,A1,D1-3,J1-10,Q1-3,R1-10,U1-4",
+    "used_designators": "#PWR1-12,A1,D1-3,H1-6,J1-11,Q1-3,R1-11,U1-4",
     "variants": []
   },
   "sheets": [
