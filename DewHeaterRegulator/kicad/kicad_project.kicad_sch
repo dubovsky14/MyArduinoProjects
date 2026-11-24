@@ -4642,7 +4642,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.25R"
+		(property "Value" "1R"
 			(at 267.97 120.6499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5515,7 +5515,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.25R"
+		(property "Value" "1R"
 			(at 276.86 130.8099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6178,7 +6178,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.25R"
+		(property "Value" "1R"
 			(at 262.89 130.8099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6575,7 +6575,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.25R"
+		(property "Value" "1R"
 			(at 255.27 120.6499 0)
 			(show_name no)
 			(do_not_autoplace no)
