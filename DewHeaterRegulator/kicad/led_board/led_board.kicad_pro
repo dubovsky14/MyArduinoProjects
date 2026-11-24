@@ -704,8 +704,8 @@
         "uuid": "7f380b7d-7222-4cf9-91c3-bd9df6abd1c5"
       },
       {
-        "filename": "regulator_main_board.kicad_sch",
-        "name": "regulator_main_board",
+        "filename": "led_board.kicad_sch",
+        "name": "led_board",
         "uuid": "db673fd8-df05-417d-9ed2-c0ca368a2ac5"
       }
     ],

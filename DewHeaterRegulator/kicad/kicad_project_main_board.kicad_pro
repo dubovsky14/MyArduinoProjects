@@ -760,8 +760,8 @@
     "subpart_id_separator": 0,
     "top_level_sheets": [
       {
-        "filename": "kicad_project.kicad_sch",
-        "name": "kicad_project",
+        "filename": "kicad_project_main_board.kicad_sch",
+        "name": "kicad_project_main_board",
         "uuid": "f6fc492c-549d-4066-a090-c85c8160d28d"
       }
     ],
