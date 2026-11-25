@@ -90,7 +90,7 @@
 		(capping no)
 		(filling no)
 		(pcbplotparams
-			(layerselection 0x00000000_00000000_55555555_5755f5ff)
+			(layerselection 0x00000000_00000000_55555555_575555ff)
 			(plot_on_all_layers_selection 0x00000000_00000000_00000000_00000000)
 			(disableapertmacros no)
 			(usegerberextensions no)
@@ -123,7 +123,7 @@
 			(mirror no)
 			(drillshape 0)
 			(scaleselection 1)
-			(outputdirectory "/home/dubovsky/Documents/zdrojaky/MyArduinoProjects/DewHeaterRegulator/gerber_files/upper_board/")
+			(outputdirectory "/home/dubovsky/Documents/temp/20261124_plosaky/gerber_files/led_board/")
 		)
 	)
 	(footprint "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal"
@@ -144,8 +144,8 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 7.62 2.72 90)
-			(layer "F.Fab")
+			(at 7.62 5.08 90)
+			(layer "F.SilkS")
 			(uuid "64907cbc-b556-4cb5-ae89-77af408c526e")
 			(effects
 				(font
@@ -559,7 +559,7 @@
 		)
 		(property "Value" "330R"
 			(at 6.35 2.72 90)
-			(layer "F.Fab")
+			(layer "F.SilkS")
 			(uuid "3a6da52f-75fb-4cd6-8e81-130d9fd58b04")
 			(effects
 				(font
@@ -946,7 +946,7 @@
 		)
 		(property "Value" "10k"
 			(at 6.35 2.72 90)
-			(layer "F.Fab")
+			(layer "F.SilkS")
 			(uuid "ecb57c35-d330-40b0-af5c-b54f01a24e06")
 			(effects
 				(font
@@ -1137,7 +1137,7 @@
 		)
 		(property "Value" "330R"
 			(at 5.08 2.72 90)
-			(layer "F.Fab")
+			(layer "F.SilkS")
 			(uuid "584b45ce-9a15-4c1e-98dc-69be881f25d1")
 			(effects
 				(font
@@ -1767,7 +1767,7 @@
 		)
 		(property "Value" "330R"
 			(at 5.08 2.54 90)
-			(layer "F.Fab")
+			(layer "F.SilkS")
 			(uuid "81fcdaee-4f35-42dd-82a7-5a14f19aee90")
 			(effects
 				(font
@@ -2882,8 +2882,8 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 2.54 2.72 90)
-			(layer "F.Fab")
+			(at 5.08 2.72 90)
+			(layer "F.SilkS")
 			(uuid "bf6ed90f-4244-4587-a7ab-b15a699c8b3b")
 			(effects
 				(font

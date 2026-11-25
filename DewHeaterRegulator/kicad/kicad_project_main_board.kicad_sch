@@ -4267,7 +4267,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
 			(at 142.24 90.17 0)
 			(hide yes)
 			(show_name no)
@@ -4349,7 +4349,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "RP2040-ZERO:MODULE_RP2040-ZERO"
+		(property "Footprint" "RP2040_zero:MODULE_RP2040-ZERO"
 			(at 105.41 67.31 0)
 			(hide yes)
 			(show_name no)
@@ -5760,7 +5760,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_THT:C_Rect_L4.0mm_W2.5mm_P2.50mm"
 			(at 217.17 59.69 0)
 			(hide yes)
 			(show_name no)

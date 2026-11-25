@@ -456,6 +456,7 @@
 		(property "Reference" "J2"
 			(at 0 -4.2 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "6da560b1-13db-423b-855d-5391df76063c")
 			(effects
 				(font
@@ -597,7 +598,7 @@
 		)
 		(property "Value" "100 nF"
 			(at 1.25 2.5 0)
-			(layer "F.Fab")
+			(layer "F.SilkS")
 			(uuid "abd6d87a-ccff-42ed-ba44-03c9f62fdfbe")
 			(effects
 				(font
@@ -795,9 +796,9 @@
 				)
 			)
 		)
-		(property "Value" "100 nF"
-			(at 1.25 2.5 90)
-			(layer "F.Fab")
+		(property "Value" "100nF"
+			(at -2.54 -2.54 180)
+			(layer "F.SilkS")
 			(uuid "c2a830c7-1ea9-4aee-a164-1a8ca5f73fb1")
 			(effects
 				(font
@@ -997,7 +998,7 @@
 		)
 		(property "Value" "1k"
 			(at 3.81 1.92 90)
-			(layer "F.Fab")
+			(layer "F.SilkS")
 			(uuid "0cf7e748-0e6e-4d4e-bc80-7c6a139bde6d")
 			(effects
 				(font
@@ -1178,6 +1179,7 @@
 		(property "Reference" "H4"
 			(at -1.265 -3.805 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "dcf42f19-ca33-4578-9eb8-25dee06d5454")
 			(effects
 				(font
@@ -1615,6 +1617,7 @@
 		(property "Reference" "J3"
 			(at 0 -4.2 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "393a6e0f-08fd-45ff-9a1f-99c29ba51c4c")
 			(effects
 				(font
@@ -1755,8 +1758,8 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 3.81 1.92 90)
-			(layer "F.Fab")
+			(at 7.62 -2.54 180)
+			(layer "F.SilkS")
 			(uuid "b0d5e24a-51f7-45a0-b317-bfd8a645b046")
 			(effects
 				(font
@@ -1946,8 +1949,8 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 3.81 1.92 90)
-			(layer "F.Fab")
+			(at 7.62 2.54 180)
+			(layer "F.SilkS")
 			(uuid "afc56342-0b30-44c7-b98a-53050f1ea79a")
 			(effects
 				(font
@@ -2350,7 +2353,7 @@
 		)
 		(property "Value" "33k"
 			(at 3.81 1.92 0)
-			(layer "F.Fab")
+			(layer "F.SilkS")
 			(uuid "e58c0d00-d43a-40bf-95f9-a027eef49cfa")
 			(effects
 				(font
@@ -2975,7 +2978,7 @@
 		)
 		(property "Value" "5k"
 			(at 3.81 1.92 0)
-			(layer "F.Fab")
+			(layer "F.SilkS")
 			(uuid "1f096c63-2647-4867-921b-ab5489a59623")
 			(effects
 				(font
@@ -3156,6 +3159,7 @@
 		(property "Reference" "H5"
 			(at 0 -4.15 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "c98e2d54-d687-4272-bdd8-7e3c56fd58c6")
 			(effects
 				(font
@@ -3167,6 +3171,7 @@
 		(property "Value" "Battery -"
 			(at 0 5.08 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "645cbd7d-9b63-45fe-a7a1-b82f325db534")
 			(effects
 				(font
@@ -3272,6 +3277,7 @@
 		(property "Reference" "H6"
 			(at 0 -3.805 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "53c86791-1f54-4cfe-a12f-712239052d46")
 			(effects
 				(font
@@ -3283,6 +3289,7 @@
 		(property "Value" "Battery +"
 			(at 0 5.08 0)
 			(layer "F.Fab")
+			(hide yes)
 			(uuid "b8f0cbcf-5eb3-4fe4-9e73-027246cb1b3b")
 			(effects
 				(font
@@ -3388,6 +3395,7 @@
 		(property "Reference" "J4"
 			(at 0 -4.2 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "5ce33c01-396f-47e1-9cba-d2f0bb99cdfd")
 			(effects
 				(font
@@ -3397,8 +3405,8 @@
 			)
 		)
 		(property "Value" "Battery -"
-			(at 0 -5.08 0)
-			(layer "F.Fab")
+			(at 5.08 0 90)
+			(layer "F.SilkS")
 			(uuid "79d473a0-a0e2-46b6-bb6a-a8afda7c7c1b")
 			(effects
 				(font
@@ -3519,6 +3527,7 @@
 		(property "Reference" "H1"
 			(at 0 -4.15 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "419a6f4b-0087-4566-852f-e9a96fde6870")
 			(effects
 				(font
@@ -3528,8 +3537,8 @@
 			)
 		)
 		(property "Value" "Out #1"
-			(at 0 4.15 0)
-			(layer "F.Fab")
+			(at -5.08 2.54 0)
+			(layer "F.SilkS")
 			(uuid "405f5170-927e-4639-95a5-e50bc4cd7ff9")
 			(effects
 				(font
@@ -3635,6 +3644,7 @@
 		(property "Reference" "J10"
 			(at 0 -4.2 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "fbf55486-8cd6-4b29-a171-8bf92135fed5")
 			(effects
 				(font
@@ -3898,6 +3908,7 @@
 		(property "Reference" "J6"
 			(at 0 -4.2 90)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "4a7306ae-4789-420d-93b3-e915a7f899ce")
 			(effects
 				(font
@@ -3907,8 +3918,8 @@
 			)
 		)
 		(property "Value" "Battery +"
-			(at 0 4.2 90)
-			(layer "F.Fab")
+			(at 5.08 0 180)
+			(layer "F.SilkS")
 			(uuid "3f9cac94-a67c-4c5f-9d0e-25f15ac6b83e")
 			(effects
 				(font
@@ -4027,6 +4038,7 @@
 		(property "Reference" "U3"
 			(at -5.825 -14.135 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "e6fdfbcf-79dd-4baf-8a9a-ca3205bac7c7")
 			(effects
 				(font
@@ -4036,8 +4048,8 @@
 			)
 		)
 		(property "Value" "RP2040-ZERO"
-			(at 2.43 12.865 0)
-			(layer "F.Fab")
+			(at 0 7.62 0)
+			(layer "F.SilkS")
 			(uuid "07db5a7c-95d0-4f75-9c08-788f2e592c71")
 			(effects
 				(font
@@ -4739,6 +4751,7 @@
 		(property "Reference" "H2"
 			(at 0 -4.15 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "784f6841-4df2-4b12-8144-7a3efd38ab56")
 			(effects
 				(font
@@ -4748,8 +4761,8 @@
 			)
 		)
 		(property "Value" "Out #2"
-			(at 0 4.15 0)
-			(layer "F.Fab")
+			(at -5.08 2.54 0)
+			(layer "F.SilkS")
 			(uuid "cb4d4925-6092-4712-bb31-b81b6b167a81")
 			(effects
 				(font
@@ -5187,7 +5200,7 @@
 		)
 		(property "Value" "1R"
 			(at 7.65 3.52 0)
-			(layer "F.Fab")
+			(layer "F.SilkS")
 			(uuid "1ed43001-5777-416a-a0c2-ec2ee1ca6f33")
 			(effects
 				(font
@@ -5398,7 +5411,7 @@
 		)
 		(property "Value" "1k"
 			(at 3.81 1.92 90)
-			(layer "F.Fab")
+			(layer "F.SilkS")
 			(uuid "2b76f85e-4bc7-4ebe-970b-fc3ea88128a5")
 			(effects
 				(font
@@ -5791,6 +5804,7 @@
 		(property "Reference" "H3"
 			(at 0 -4.15 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "d55258b4-6846-49bd-9c59-8ab1b82a73bf")
 			(effects
 				(font
@@ -5800,8 +5814,8 @@
 			)
 		)
 		(property "Value" "Out #3"
-			(at 0 4.15 0)
-			(layer "F.Fab")
+			(at -5.08 -2.54 0)
+			(layer "F.SilkS")
 			(uuid "81661178-a656-4772-b485-4799b6e7c995")
 			(effects
 				(font
@@ -5917,7 +5931,7 @@
 		)
 		(property "Value" "10k"
 			(at 3.81 1.92 90)
-			(layer "F.Fab")
+			(layer "F.SilkS")
 			(uuid "cb098a44-b03a-488e-9845-148695c9ca44")
 			(effects
 				(font
@@ -6096,7 +6110,7 @@
 		(descr "Through hole straight pin header, 1x10, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x10 2.54mm single row")
 		(property "Reference" "J5"
-			(at 0 -2.38 0)
+			(at 0 -2.54 0)
 			(layer "F.SilkS")
 			(uuid "762ccae2-d22d-4d4f-a72d-16e071249707")
 			(effects
@@ -6633,8 +6647,8 @@
 		(layer "F.Cu")
 		(uuid "fd7eda32-498c-4ad5-a836-0fbfc13ad4b4")
 		(at 46.99 84.7725)
-		(property "Reference" "U4"
-			(at -1.27 -0.9525 0)
+		(property "Reference" "ADS1115"
+			(at 16.51 -0.9525 90)
 			(layer "F.SilkS")
 			(uuid "f5368114-c554-43df-9331-a52ae6cabdf8")
 			(effects
