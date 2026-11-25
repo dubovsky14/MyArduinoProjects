@@ -574,7 +574,7 @@
     "last_paths": {
       "idf": "",
       "netlist": "./",
-      "plot": "",
+      "plot": "/home/dubovsky/Documents/temp/20261124_plosaky/gerber_files/main_board/",
       "specctra_dsn": "",
       "step": "",
       "vrml": ""
@@ -765,13 +765,13 @@
         "uuid": "f6fc492c-549d-4066-a090-c85c8160d28d"
       }
     ],
-    "used_designators": "#PWR1-12,A1,D1-3,H1-6,J1-11,Q1-3,R1-11,U1-4",
+    "used_designators": "#PWR1-13,A1,C1-2,D1-3,H1-6,J1-11,Q1-3,R1-11,U1-4",
     "variants": []
   },
   "sheets": [
     [
       "f6fc492c-549d-4066-a090-c85c8160d28d",
-      "kicad_project"
+      "kicad_project_main_board"
     ]
   ],
   "text_variables": {},
